@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Home from './Home';
+import Home from '../pages/Home';
 import './login.css';
 
 function Login() {
