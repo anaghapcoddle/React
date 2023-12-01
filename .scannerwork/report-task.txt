@@ -2,5 +2,5 @@ projectKey=restaurant_managent_system_react
 serverUrl=http://localhost:9000
 serverVersion=10.3.0.82913
 dashboardUrl=http://localhost:9000/dashboard?id=restaurant_managent_system_react
-ceTaskId=AYwXKEGQaVRk14p341tc
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYwXKEGQaVRk14p341tc
+ceTaskId=AYwjxxrG2WLWEAnxpYhg
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYwjxxrG2WLWEAnxpYhg

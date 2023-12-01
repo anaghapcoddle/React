@@ -1,34 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Home from './Home';
 import './login.css';
+
+interface Credentials {
+  username: string;
+  password: string;
+}
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [credentials, setCredentials] = useState<Credentials>({
+    username: '',
+    password: '',
+  });
   const [error, setError] = useState<string>('');
-
-  const loggedIn = window.localStorage.getItem('isLoggedIn');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post('http://localhost:8080/auth/login', { username, password })
+      .post('http://localhost:8080/auth/login', credentials)
       .then((res) => {
-        navigate('/home');
+        navigate('/');
         window.localStorage.setItem('token', res.data.token);
-        window.localStorage.setItem('isLoggedIn', 'true');
       })
-      .catch(() => {
-        setError('Login failed. Please check your credentials.');
+      .catch((err) => {
+        setError(err.response.data.error);
       });
   };
 
-  return loggedIn ? (
-    <Home />
-  ) : (
+  return (
     <div className="form-container">
       <form className="login-form" onSubmit={handleSubmit}>
         <h1 className="form-title">LOG IN</h1>
@@ -38,14 +39,18 @@ function Login() {
             id="username"
             placeholder="Username"
             name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={credentials.username}
+            onChange={(e) =>
+              setCredentials({ ...credentials, username: e.target.value })
+            }
           />
         </div>
         <div className="form-elements">
           <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={credentials.password}
+            onChange={(e) =>
+              setCredentials({ ...credentials, password: e.target.value })
+            }
             type="password"
             placeholder="Password"
             id="password"
@@ -55,7 +60,7 @@ function Login() {
         <button className="login-button" type="submit">
           Log In
         </button>
-        <p>{error}</p>
+        <p className="errorMessage">{error}</p>
       </form>
     </div>
   );

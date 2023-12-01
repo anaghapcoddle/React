@@ -42,3 +42,8 @@
     align-self: center;
     margin-bottom: 50px;
 }
+
+.errorMessage {
+  color: red;
+  text-align: center;
+}
