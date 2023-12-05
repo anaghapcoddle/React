@@ -7,7 +7,7 @@
     background-color: rgb(225, 220, 211);
   }
 
-.login-form {
+.login-form, .signup-form {
     display: flex;
     flex-direction: column;
     background-color: rgb(147, 136, 116);
@@ -28,7 +28,7 @@
   border-radius: 5px;
   }
 
-.login-button{
+.login-button, .signup-button{
     width: 100%;
     padding: 10px;
     background-color: rgb(40, 40, 40);
@@ -45,5 +45,10 @@
 
 .errorMessage {
   color: red;
+  text-align: center;
+}
+
+.successMessage{
+  color: green;
   text-align: center;
 }

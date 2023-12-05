@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './login.css';
+import '../components/form.css';
+import postData from '../utils/apiUtils';
 
 interface Credentials {
   username: string;
   password: string;
 }
 
-function Login() {
+function Login({ onLogin }: { onLogin: () => void }) {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState<Credentials>({
     username: '',
     password: '',
   });
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<any>('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios
-      .post('http://localhost:8080/auth/login', credentials)
-      .then((res) => {
-        navigate('/');
-        window.localStorage.setItem('token', res.data.token);
-      })
-      .catch((err) => {
-        setError(err.response.data.error);
-      });
+    const res = await postData(
+      `${process.env.REACT_APP_API_URL}/auth/login`,
+      credentials
+    );
+    if (res.error !== null) {
+      setError(res.error.response?.data?.error);
+    } else {
+      window.localStorage.setItem('token', res.data.token);
+      onLogin();
+      navigate('/');
+    }
   };
 
   return (
