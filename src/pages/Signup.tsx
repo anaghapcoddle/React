@@ -35,7 +35,6 @@ function Signup() {
         password: '',
       });
       setError('');
-      // setSuccessMessage('');
     }
   };
 
@@ -79,11 +78,15 @@ function Signup() {
             }
           />
         </div>
+        <p className="error-message">{error}</p>
         <button className="signup-button" type="submit">
           Sign up
         </button>
-        <p className="errorMessage">{error}</p>
-        <p className="successMessage">{successMessage}</p>
+        {successMessage && (
+          <div className="success-message-container">
+            <p className="success-message">{successMessage}</p>
+          </div>
+        )}
       </form>
     </div>
   );

@@ -8,10 +8,8 @@ const postData = async (url: string, data: any) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(response);
     return { data: response.data, error: null };
   } catch (error: any) {
-    // console.log(error);
     return { data: null, error };
   }
 };

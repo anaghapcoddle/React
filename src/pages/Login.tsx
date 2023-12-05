@@ -62,10 +62,11 @@ function Login({ onLogin }: { onLogin: () => void }) {
         <button className="login-button" type="submit">
           Log In
         </button>
-        <p className="errorMessage">{error}</p>
+        <p className="error-message">{error}</p>
       </form>
     </div>
   );
 }
 
 export default Login;
+
