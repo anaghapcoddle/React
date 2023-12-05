@@ -8,7 +8,7 @@ interface Credentials {
   password: string;
 }
 
-function Login({ onLogin }: { onLogin: () => void }) {
+function Login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState<Credentials>({
     username: '',
@@ -26,7 +26,6 @@ function Login({ onLogin }: { onLogin: () => void }) {
       setError(res.error.response?.data?.error);
     } else {
       window.localStorage.setItem('token', res.data.token);
-      onLogin();
       navigate('/');
     }
   };
@@ -69,4 +68,3 @@ function Login({ onLogin }: { onLogin: () => void }) {
 }
 
 export default Login;
-

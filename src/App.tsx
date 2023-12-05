@@ -1,32 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {
+  useNavigate,
+  useLocation,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+function AuthenticatedPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const userToken = window.localStorage.getItem('token');
-    if (userToken) {
-      setIsLoggedIn(true);
+    const token = localStorage.getItem('token');
+
+    if (token && location.pathname === '/') {
+      navigate('/');
+    } else if (!token) {
+      navigate('/login');
     }
-  }, []);
+  }, [navigate, location.pathname]);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
+  return <Home />;
+}
 
+function App() {
   return (
     <Router>
       <Routes>
-        {!isLoggedIn ? (
-          <Route path="/" element={<Login onLogin={handleLogin} />} />
-        ) : (
-          <Route path="/" element={<Home />} />
-        )}
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/" element={<AuthenticatedPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>

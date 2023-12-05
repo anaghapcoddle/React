@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.65",
-    "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.17",
     "axios": "^1.6.2",
     "react": "^18.2.0",
@@ -43,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "^18.2.42",
     "eslint": "^8.31.0",
     "eslint-config-coddle-typescript": "^0.1.0",
     "eslint-config-react-app": "^7.0.1"
