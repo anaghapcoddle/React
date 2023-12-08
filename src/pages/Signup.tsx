@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../components/form.css';
 import postData from '../utils/apiUtils';
 
@@ -9,13 +10,13 @@ interface Signupdata {
 }
 
 function Signup() {
+  const navigate = useNavigate();
   const [signupdata, setSignupData] = useState<Signupdata>({
     username: '',
     email: '',
     password: '',
   });
   const [error, setError] = useState<any>('');
-  const [successMessage, setSuccessMessage] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +25,16 @@ function Signup() {
       signupdata
     );
     if (res.error === null) {
-      setSuccessMessage(res.data?.message);
+      const loginCredentials = {
+        username: signupdata.username,
+        password: signupdata.password,
+      };
+      const loginRes = await postData(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        loginCredentials
+      );
+      localStorage.setItem('token', JSON.stringify(loginRes.data.token));
+      navigate('/');
     }
     if (res.error !== null) {
       setError(res.error.response?.data?.error);
@@ -82,11 +92,6 @@ function Signup() {
         <button className="signup-button" type="submit">
           Sign up
         </button>
-        {successMessage && (
-          <div className="success-message-container">
-            <p className="success-message">{successMessage}</p>
-          </div>
-        )}
       </form>
     </div>
   );

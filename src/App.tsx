@@ -10,30 +10,38 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 
-function AuthenticatedPage() {
-  const navigate = useNavigate();
-  const location = useLocation();
+const withAuthentication = (Component: React.ComponentType<any>) => {
+  return function () {
+    const navigate = useNavigate();
+    const location = useLocation();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+    useEffect(() => {
+      const token = localStorage.getItem('token');
 
-    if (token && location.pathname === '/') {
-      navigate('/');
-    } else if (!token) {
-      navigate('/login');
-    }
-  }, [navigate, location.pathname]);
+      if (!token) {
+        navigate('/login');
+        return;
+      }
 
-  return <Home />;
-}
+      if (token && location.pathname === '/login') {
+        navigate('/');
+      }
+    }, [navigate, location.pathname]);
+
+    return <Component />;
+  };
+};
+
+const AuthenticatedHome = withAuthentication(Home);
+const AuthenticatedHomeSignup = withAuthentication(Signup);
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<AuthenticatedPage />} />
+        <Route path="/" element={<AuthenticatedHome />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<AuthenticatedHomeSignup />} />
       </Routes>
     </Router>
   );
