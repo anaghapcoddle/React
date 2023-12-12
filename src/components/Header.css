@@ -1,19 +1,20 @@
+.Header {
+    background-color: rgba(0, 67, 50, 255);
+    font-family: fangsong;
+    color: rgba(192, 161, 89, 255);
+}
+
 .Heading-Container {
     height: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .Heading {
     color: rgba(192, 161, 89, 255);
-    /* font-family: fangsong; */
     font-size: 60px;
-}
-
-.Header {
-    background-color: rgba(0, 67, 50, 255);
-    font-family: fangsong;
 }
 
 ul {
@@ -27,7 +28,7 @@ li {
     float: left;
 }
 
-li a {
+li a, .username-display {
     display: block;
     color: rgba(192, 161, 89, 255);
     text-align: center;
@@ -40,11 +41,13 @@ li a:hover {
     color: rgba(0, 67, 50, 255);
 }
 
-/* .Navigation-bar{
-    height: 60px;
-} */
-
 .Navigation-bar {
     display: flex;
     justify-content: center;
-  }
+    align-items: center;
+}
+
+.User-Account-Links {
+    margin-left: auto;
+}
+
