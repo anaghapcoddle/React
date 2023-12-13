@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../components/form.css';
-import postData from '../utils/apiUtils';
+import { postData } from '../utils/apiUtils';
 
 interface Credentials {
   username: string;
   password: string;
 }
 
+// interface LoginProps {
+//   setActualToken: React.Dispatch<React.SetStateAction<string | null>>;
+// }
+
 function Login() {
+  // function Login({ setActualToken }: LoginProps) {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState<Credentials>({
     username: '',
@@ -26,6 +31,7 @@ function Login() {
       setError(res.error.response?.data?.error);
     } else {
       window.localStorage.setItem('token', res.data.token);
+      // setActualToken(res.data.token);
       navigate('/');
     }
   };

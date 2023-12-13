@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-
+// import { jwtDecode } from 'jwt-decode';
+import './App.css';
 import {
   useNavigate,
   useLocation,
@@ -7,42 +8,50 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import { getData } from './utils/apiUtils';
+
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 
-const withAuthentication = (Component: React.ComponentType<any>) => {
-  return function () {
-    const navigate = useNavigate();
-    const location = useLocation();
+interface PrivateRouteProps {
+  element: React.ReactNode;
+}
 
-    useEffect(() => {
+function PrivateRoute({ element }: PrivateRouteProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    async function verifyToken() {
       const token = localStorage.getItem('token');
 
-      if (!token) {
+      if (!token && location.pathname !== '/login') {
         navigate('/login');
-        return;
       }
-
-      if (token && location.pathname === '/login') {
-        navigate('/');
+      const res = await getData(`${process.env.REACT_APP_API_URL}/menu/view`);
+      if (res.error !== null) {
+        navigate('/login');
       }
-    }, [navigate, location.pathname]);
+    }
+    verifyToken();
+  }, [navigate, location.pathname]);
 
-    return <Component />;
-  };
-};
-
-const AuthenticatedHome = withAuthentication(Home);
-const AuthenticatedHomeSignup = withAuthentication(Signup);
+  const storedToken = localStorage.getItem('token');
+  return storedToken ? (element as JSX.Element) : null;
+}
 
 function App() {
+  useEffect(() => {
+    document.title = 'Brunch Club';
+  }, []);
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<AuthenticatedHome />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<AuthenticatedHomeSignup />} />
+        <Route path="/" element={<PrivateRoute element={<Home />} />} />
+        <Route path="/signup" element={<PrivateRoute element={<Signup />} />} />
       </Routes>
     </Router>
   );

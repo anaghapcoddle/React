@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../components/form.css';
-import postData from '../utils/apiUtils';
+import { postData } from '../utils/apiUtils';
 
 interface Signupdata {
   username: string;

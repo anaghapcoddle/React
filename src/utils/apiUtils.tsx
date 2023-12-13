@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const postData = async (url: string, data: any) => {
+export const postData = async (url: string, data: any) => {
   try {
     const token = localStorage.getItem('token');
     const response = await axios.post(url, data, {
@@ -14,4 +14,16 @@ const postData = async (url: string, data: any) => {
   }
 };
 
-export default postData;
+export const getData = async (url: string) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return { data: response.data, error: null };
+  } catch (error: any) {
+    return { data: null, error };
+  }
+};
