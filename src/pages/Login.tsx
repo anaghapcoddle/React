@@ -8,12 +8,7 @@ interface Credentials {
   password: string;
 }
 
-// interface LoginProps {
-//   setActualToken: React.Dispatch<React.SetStateAction<string | null>>;
-// }
-
 function Login() {
-  // function Login({ setActualToken }: LoginProps) {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState<Credentials>({
     username: '',
@@ -31,7 +26,6 @@ function Login() {
       setError(res.error.response?.data?.error);
     } else {
       window.localStorage.setItem('token', res.data.token);
-      // setActualToken(res.data.token);
       navigate('/');
     }
   };

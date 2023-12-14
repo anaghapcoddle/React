@@ -1,7 +1,10 @@
-.Header {
-    /* background-color: rgba(0, 67, 50, 255); */
+header {
+    background-color: rgba(0, 67, 50, 255);
     font-family: fangsong;
     color: rgba(192, 161, 89, 255);
+}
+
+.Header-container{
     display: flex;
 }
 
@@ -22,6 +25,10 @@
     margin-bottom: 0;
 }
 
+.heading-tagline{
+    margin-bottom: 16px;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -29,17 +36,25 @@ ul {
     overflow: hidden;
 }
 
-li {
+.navigation-bar-item {
     float: left;
 }
 
-li a, .username-display {
+.navigation-link{
     display: block;
     color: rgba(192, 161, 89, 255);
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
+
+.signout-button{
+    color: rgba(192, 161, 89, 255);
+    background-color: rgba(0, 67, 50, 255);
+    text-align: center;
+    padding: 14px 16px;
+    border: none;
+}
+
 
 li a:hover {
     background-color: rgba(192, 161, 89, 255);
