@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@900&display=swap');
+
+.home {
+    background-color: rgba(192, 161, 89, 255);
+}
+
+.menu-heading {
+    font-family: 'Playfair Display SC', serif;
+}
+
+.foodimage1 {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: center; */
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-price {
+    margin-left: 20px;
+}

@@ -1,0 +1,24 @@
+footer {
+    background-color: rgba(0, 67, 50, 255);
+    font-family: fangsong;
+    color: rgba(192, 161, 89, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 0;
+    flex-direction: column;
+}
+
+.social-media-icon {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+  }
+  
+.footer-contact-details{
+    display: flex;
+}
+
+.footer-contact-details div {
+    margin-right: 20px;
+}
