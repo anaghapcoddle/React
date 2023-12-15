@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { jwtDecode } from 'jwt-decode';
 import './App.css';
 import {
   useNavigate,
@@ -13,6 +12,7 @@ import { getData } from './utils/apiUtils';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
+import Table from './components/Table';
 
 interface PrivateRouteProps {
   element: React.ReactNode;
@@ -52,6 +52,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<PrivateRoute element={<Home />} />} />
         <Route path="/signup" element={<PrivateRoute element={<Signup />} />} />
+        <Route
+          path="/table/:tableId"
+          element={<PrivateRoute element={<Table />} />}
+        />
       </Routes>
     </Router>
   );

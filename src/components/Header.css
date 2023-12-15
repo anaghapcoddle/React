@@ -4,11 +4,11 @@ header {
     color: rgba(192, 161, 89, 255);
 }
 
-.Header-container{
+.Header-container {
     display: flex;
 }
 
-.container{
+.container {
     max-width: 1400px;
     margin: 0px auto;
 }
@@ -25,7 +25,7 @@ header {
     margin-bottom: 0;
 }
 
-.heading-tagline{
+.heading-tagline {
     margin-bottom: 16px;
 }
 
@@ -38,25 +38,27 @@ ul {
 
 .navigation-bar-item {
     float: left;
+    position: relative;
 }
 
-.navigation-link{
+.navigation-link {
     display: block;
     color: rgba(192, 161, 89, 255);
     padding: 14px 16px;
     text-decoration: none;
 }
 
-.signout-button{
+.signout-button {
     color: rgba(192, 161, 89, 255);
     background-color: rgba(0, 67, 50, 255);
     text-align: center;
     padding: 14px 16px;
-    border: none;
+    border: 1px solid rgba(0, 67, 50, 255);
+    font-family: fangsong;
 }
 
 
-li a:hover {
+.navigation-link:hover {
     background-color: rgba(192, 161, 89, 255);
     color: rgba(0, 67, 50, 255);
 }
@@ -65,4 +67,37 @@ li a:hover {
     display: flex;
     align-items: center;
     margin-left: auto;
+    position: relative;
+}
+
+.signout-button:hover {
+    border: 1px solid rgba(192, 161, 89, 255);
+}
+
+/* .navigation-sub-links {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: rgb(61, 50, 50);
+}
+
+.navigation-bar-item:hover .navigation-sub-links-wrapper {
+    display: block;
+} */
+
+.navigation-sub-links-wrapper {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Position below the parent */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: rgb(61, 50, 50);
+}
+
+.navigation-bar-item:hover .navigation-sub-links-wrapper {
+    display: block;
 }

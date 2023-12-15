@@ -18,14 +18,21 @@ function Header() {
         <div className="Navigation-bar">
           <ul>
             <li className="navigation-bar-item">
-              <Link to="/menu" className="navigation-link">
-                MENU
-              </Link>
-            </li>
-            <li className="navigation-bar-item">
               <Link to="/orders" className="navigation-link">
                 ORDERS
               </Link>
+              <ul className="navigation-sub-links-wrapper">
+                <li>
+                  <Link to="/take-orders" className="navigation-sub-links">
+                    Take Orders
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/order-history" className="navigation-sub-links">
+                    Order History
+                  </Link>
+                </li>
+              </ul>
             </li>
             <li className="navigation-bar-item">
               <Link to="/reservation" className="navigation-link">
@@ -43,7 +50,7 @@ function Header() {
                 className="signout-button"
                 onClick={handleSignOut}
               >
-                Sign Out
+                SIGN OUT
               </button>
             </li>
           </ul>

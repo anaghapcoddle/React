@@ -1,0 +1,35 @@
+.table-order-page {
+    background-color: rgba(192, 161, 89, 255);
+}
+
+.order-page-content,
+.menu-items-container {
+    padding: 20px 0px;
+}
+
+.menu-item {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    grid-gap: 10px;
+}
+
+.quantity {
+    display: grid;
+    grid-template-columns: 25px 25px 25px;
+    grid-gap: 10px;
+}
+
+.quantity-element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-cart-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cart, .cart-body{
+    padding: 20px 0px;
+}

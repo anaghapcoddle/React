@@ -22,7 +22,7 @@ function Login() {
       `${process.env.REACT_APP_API_URL}/auth/login`,
       credentials
     );
-    if (res.error !== null) {
+    if (res.error) {
       setError(res.error.response?.data?.error);
     } else {
       window.localStorage.setItem('token', res.data.token);

@@ -3,7 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 
 interface LayoutProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 function Layout({ children }: LayoutProps): JSX.Element {
