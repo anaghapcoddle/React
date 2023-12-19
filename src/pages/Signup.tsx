@@ -11,7 +11,7 @@ interface Signupdata {
 
 function Signup() {
   const navigate = useNavigate();
-  const [signupdata, setSignupData] = useState<Signupdata>({
+  const [signupData, setSignupData] = useState<Signupdata>({
     username: '',
     email: '',
     password: '',
@@ -22,12 +22,12 @@ function Signup() {
     e.preventDefault();
     const res = await postData(
       `${process.env.REACT_APP_API_URL}/auth/signup`,
-      signupdata
+      signupData
     );
     if (res.error === null) {
       const loginCredentials = {
-        username: signupdata.username,
-        password: signupdata.password,
+        username: signupData.username,
+        password: signupData.password,
       };
       const loginRes = await postData(
         `${process.env.REACT_APP_API_URL}/auth/login`,
@@ -58,9 +58,9 @@ function Signup() {
             id="username"
             placeholder="Username"
             name="username"
-            value={signupdata.username}
+            value={signupData.username}
             onChange={(e) =>
-              setSignupData({ ...signupdata, username: e.target.value })
+              setSignupData({ ...signupData, username: e.target.value })
             }
           />
         </div>
@@ -70,9 +70,9 @@ function Signup() {
             placeholder="Email"
             id="email"
             name="email"
-            value={signupdata.email}
+            value={signupData.email}
             onChange={(e) =>
-              setSignupData({ ...signupdata, email: e.target.value })
+              setSignupData({ ...signupData, email: e.target.value })
             }
           />
         </div>
@@ -82,9 +82,9 @@ function Signup() {
             placeholder="Password"
             id="password"
             name="password"
-            value={signupdata.password}
+            value={signupData.password}
             onChange={(e) =>
-              setSignupData({ ...signupdata, password: e.target.value })
+              setSignupData({ ...signupData, password: e.target.value })
             }
           />
         </div>

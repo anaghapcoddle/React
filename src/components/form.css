@@ -5,7 +5,7 @@
     height: 100vh;
     flex-direction: column;
     background-color: rgba(0, 67, 50, 255);
-    font-family: fangsong;
+    font-family: fangsong, serif;
   }
 
 .login-form, .signup-form {
@@ -53,11 +53,6 @@
 
 .error-message {
   color: red;
-  text-align: center;
-}
-
-.success-message{
-  color: green;
   text-align: center;
 }
 

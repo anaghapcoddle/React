@@ -1,6 +1,6 @@
 header {
     background-color: rgba(0, 67, 50, 255);
-    font-family: fangsong;
+    font-family: fangsong, serif;
     color: rgba(192, 161, 89, 255);
 }
 
@@ -54,7 +54,7 @@ ul {
     text-align: center;
     padding: 14px 16px;
     border: 1px solid rgba(0, 67, 50, 255);
-    font-family: fangsong;
+    font-family: fangsong, serif;
 }
 
 

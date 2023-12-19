@@ -1,6 +1,6 @@
 footer {
     background-color: rgba(0, 67, 50, 255);
-    font-family: fangsong;
+    font-family: fangsong, serif;
     color: rgba(192, 161, 89, 255);
     display: flex;
     justify-content: center;

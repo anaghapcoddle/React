@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import './Home.css';
@@ -11,23 +10,16 @@ interface DecodedToken {
 }
 
 function Home() {
-  const [firstNameToDisplay, setFirstName] = useState<string>('');
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const decoded: DecodedToken = jwtDecode(token as string);
-    const { firstName } = decoded;
-    setFirstName(firstName);
-  }, []);
+  const token = localStorage.getItem('token');
+  const decoded: DecodedToken = jwtDecode(token as string);
+  const { firstName } = decoded;
 
   return (
     <div className="home">
       <Layout>
         <div className="home-content container">
           <div className="welcome-message-container">
-            <span className="welcome-message">
-              Welcome {firstNameToDisplay}!
-            </span>
+            <span className="welcome-message">Welcome {firstName}!</span>
           </div>
           <div className="welcome-message-container">
             <span className="welcome-message">Select table</span>
