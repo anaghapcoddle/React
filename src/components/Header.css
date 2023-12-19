@@ -74,23 +74,10 @@ ul {
     border: 1px solid rgba(192, 161, 89, 255);
 }
 
-/* .navigation-sub-links {
-    display: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 5px;
-    color: rgb(61, 50, 50);
-}
-
-.navigation-bar-item:hover .navigation-sub-links-wrapper {
-    display: block;
-} */
-
 .navigation-sub-links-wrapper {
     display: none;
     position: absolute;
     top: 100%;
-    /* Position below the parent */
     left: 0;
     background-color: #fff;
     border: 1px solid #ccc;

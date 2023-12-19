@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
 import Layout from './Layout';
 import './Table.css';
-import { getData } from '../utils/apiUtils';
+import { getData, postData } from '../utils/apiUtils';
 
 interface MenuItem {
   id: number;
@@ -10,11 +11,19 @@ interface MenuItem {
   quantity: number;
 }
 
+interface DecodedToken {
+  id: string;
+  firstName: string;
+  email: string;
+}
+
 function Table() {
   const { tableId } = useParams<{ tableId: string }>();
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [option, setOption] = useState<number | undefined>();
   const [itemList, settemList] = useState<MenuItem[]>([]);
+  const [employeeId, setEmployeeId] = useState<string>('');
+  const [error, setError] = useState<any>('');
 
   useEffect(() => {
     async function GetMenuData() {
@@ -22,11 +31,15 @@ function Table() {
       const { data } = res.data;
       const menuItemsWithQuantity: MenuItem[] = data.map((item: MenuItem) => ({
         ...item,
-        quantity: 0,
+        quantity: 1,
       }));
       setMenuItems(menuItemsWithQuantity);
     }
     GetMenuData();
+    const token = localStorage.getItem('token');
+    const decoded: DecodedToken = jwtDecode(token as string);
+    const { id } = decoded;
+    setEmployeeId(id);
   }, []);
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -56,10 +69,28 @@ function Table() {
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const reducedOrderDetails = itemList.map(({ id, quantity }) => ({
+      id,
+      quantity,
+    }));
+    const res = await postData(`${process.env.REACT_APP_API_URL}/orders/add`, {
+      employeeId,
+      diningTableId: tableId,
+      status: 'REC',
+      items: reducedOrderDetails,
+    });
+    if (res.error) {
+      setError(res.error.response?.data?.error);
+    }
+  };
+
   return (
     <div className="table-order-page">
       <Layout>
-        <div className="order-page-content container">
+        <form className="order-page-content container" onSubmit={handleSubmit}>
           <div className="heading">
             <span>Order for Table {tableId}</span>
           </div>
@@ -119,9 +150,20 @@ function Table() {
             </button>
           </div>
           {itemList.map((item) => (
-            <p key={item.id}>{item.name}</p>
+            <div>
+              <span key={item.id} className="display-item-name">
+                {item.name}
+              </span>
+              <span key={item.id} className="display-item-quantity">
+                {item.quantity}
+              </span>
+            </div>
           ))}
-        </div>
+          <button className="create-order-button" type="submit">
+            Create Order
+          </button>
+          <p className="error-message">{error}</p>
+        </form>
       </Layout>
     </div>
   );

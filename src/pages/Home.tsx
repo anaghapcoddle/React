@@ -18,17 +18,6 @@ function Home() {
     const decoded: DecodedToken = jwtDecode(token as string);
     const { firstName } = decoded;
     setFirstName(firstName);
-
-    // async function GetTableAvailability() {
-    //   const res = await getData(`${process.env.REACT_APP_API_URL}/menu/view`);
-    //   const { data } = res.data;
-    //   const menuItemsWithQuantity = data.map((item: any) => ({
-    //     ...item,
-    //     quantity: 0,
-    //   }));
-    //   setMenuItems(menuItemsWithQuantity);
-    // }
-    // GetTableAvailability();
   }, []);
 
   return (
