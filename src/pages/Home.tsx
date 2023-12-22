@@ -18,11 +18,11 @@ function Home() {
     <div className="home">
       <Layout>
         <div className="home-content container">
-          <div className="welcome-message-container">
-            <span className="welcome-message">Welcome {firstName}!</span>
+          <div className="welcome-text-container">
+            <span className="homepage-text">Welcome {firstName}!</span>
           </div>
-          <div className="welcome-message-container">
-            <span className="welcome-message">Select table</span>
+          <div className="select-table-text-container">
+            <span className="homepage-text">Select table</span>
           </div>
           <div className="table-container">
             <Link to="/table/1" className="table table1">

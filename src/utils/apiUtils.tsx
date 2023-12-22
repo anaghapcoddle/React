@@ -5,7 +5,7 @@ export const postData = async (url: string, data: any) => {
     const token = localStorage.getItem('token');
     const response = await axios.post(url, data, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Anagha ${token}`,
       },
     });
     return { data: response.data, error: null };
@@ -22,6 +22,7 @@ export const getData = async (url: string) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    // console.log(response);
     return { data: response.data, error: null };
   } catch (error: any) {
     return { data: null, error };

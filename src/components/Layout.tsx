@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import './Layout.css';
 
 interface LayoutProps {
   readonly children: ReactNode;
@@ -8,7 +9,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps): JSX.Element {
   return (
-    <div>
+    <div className="Layout-wrapper">
       <Header />
       <main>{children}</main>
       <Footer />

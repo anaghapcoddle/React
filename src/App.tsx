@@ -6,7 +6,7 @@ import PrivateRoute from './utils/privateRoute';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
-import Table from './components/Table';
+import Table from './pages/Table';
 
 function App() {
   useEffect(() => {

@@ -58,7 +58,7 @@ function Login() {
             name="password"
           />
         </div>
-        <button className="login-button" type="submit">
+        <button className="login-button button-design" type="submit">
           Log In
         </button>
         <p className="error-message">{error}</p>

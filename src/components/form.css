@@ -35,10 +35,13 @@
 .login-button, .signup-button{
     width: 104%;
     padding: 10px;
-    background-color: rgba(0, 67, 50, 255);
-    border-width: 1px;
-    border-color: rgba(192, 161, 89, 255);
-    color: rgba(192, 161, 89, 255);
+}
+
+.button-design{
+  background-color: rgba(0, 67, 50, 255);
+  border-width: 1px;
+  border-color: rgba(192, 161, 89, 255);
+  color: rgba(192, 161, 89, 255);
 }
 
 .login-button{

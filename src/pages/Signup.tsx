@@ -89,7 +89,7 @@ function Signup() {
           />
         </div>
         <p className="error-message">{error}</p>
-        <button className="signup-button" type="submit">
+        <button className="signup-button button-design" type="submit">
           Sign up
         </button>
       </form>
