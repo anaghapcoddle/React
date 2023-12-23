@@ -2,9 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import './CreateOrderForm.css';
-// import { useDispatch } from 'react-redux';
 import { getData, postData } from '../utils/apiUtils';
-// import addOrder from '../state/previousOrdersSlice';
 
 interface MenuItem {
   id: number;
@@ -34,7 +32,6 @@ function CreateOrderForm() {
     async function GetMenuData() {
       const res = await getData(`${process.env.REACT_APP_API_URL}/menu/view`);
       const { data } = res.data;
-      // console.log(data);
       const menuItemsWithQuantity: MenuItem[] = data.map((item: MenuItem) => ({
         ...item,
         quantity: 1,

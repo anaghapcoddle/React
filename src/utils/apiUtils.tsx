@@ -22,7 +22,6 @@ export const getData = async (url: string) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(response);
     return { data: response.data, error: null };
   } catch (error: any) {
     return { data: null, error };

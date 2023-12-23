@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@900&display=swap');
 
-/* .home {
-    background-color: rgba(192, 161, 89, 255);
-} */
-
 .home-content {
     display: flex;
     flex-direction: column;
@@ -41,8 +37,3 @@
     font-family: fangsong, serif;
     font-size: larger;
 }
-
-/* select{
-    background-color: rgba(0, 67, 50, 1);
-    color: rgba(192, 161, 89, 255);
-} */
