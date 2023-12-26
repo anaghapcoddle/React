@@ -21,6 +21,11 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-  ]
+    "src",
+  ".eslintrc.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "eslintIntegration": true 
 }
