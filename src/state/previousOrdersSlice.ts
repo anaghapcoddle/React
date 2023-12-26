@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface ItemDetails {
-  menuItem: number;
+  name: string;
   quantity: number;
 }
 

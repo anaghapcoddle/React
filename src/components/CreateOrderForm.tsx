@@ -19,7 +19,7 @@ interface DecodedToken {
 function CreateOrderForm() {
   const token = localStorage.getItem('token');
   const decoded: DecodedToken = jwtDecode(token as string);
-  const employeeID = decoded.id;
+  const employeeId = decoded.id;
 
   const { tableId } = useParams<{ tableId: string }>();
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -91,9 +91,8 @@ function CreateOrderForm() {
       quantity,
     }));
     const res = await postData(`${process.env.REACT_APP_API_URL}/orders/add`, {
-      employeeID,
+      employeeId,
       tableId,
-      status: 'REC',
       items: reducedOrderDetails,
     });
     if (res.error) {
