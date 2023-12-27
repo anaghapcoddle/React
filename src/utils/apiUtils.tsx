@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios, from 'axios';
 
 export const postData = async (url: string, data: any) => {
   try {
     const token = localStorage.getItem('token');
     const response = await axios.post(url, data, {
       headers: {
-        Authorization: `Anagha ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return { data: response.data, error: null };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return { data: null, error };
   }
 };
@@ -23,7 +23,7 @@ export const getData = async (url: string) => {
       },
     });
     return { data: response.data, error: null };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return { data: null, error };
   }
 };

@@ -18,6 +18,11 @@ function Header() {
         <div className="Navigation-bar">
           <ul>
             <li className="navigation-bar-item">
+              <Link to="/" className="navigation-link">
+                TABLES
+              </Link>
+            </li>
+            <li className="navigation-bar-item">
               <Link to="/orders" className="navigation-link">
                 ORDERS
               </Link>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getData } from './apiUtils';
 
@@ -10,20 +10,21 @@ function PrivateRoute({ element }: PrivateRouteProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    async function verifyToken() {
-      const token = localStorage.getItem('token');
+  const verifyToken = useCallback(async () => {
+    const token = localStorage.getItem('token');
 
-      if (!token && location.pathname !== '/login') {
-        navigate('/login');
-      }
-      const res = await getData(`${process.env.REACT_APP_API_URL}/menu/view`);
-      if (res.error !== null) {
-        navigate('/login');
-      }
+    if (!token && location.pathname !== '/login') {
+      navigate('/login');
     }
-    verifyToken();
+    const res = await getData(`${process.env.REACT_APP_API_URL}/menu/view`);
+    if (res.error !== null) {
+      navigate('/login');
+    }
   }, [navigate, location.pathname]);
+
+  useEffect(() => {
+    verifyToken();
+  }, [verifyToken]);
 
   const storedToken = localStorage.getItem('token');
   return storedToken ? (element as JSX.Element) : null;
