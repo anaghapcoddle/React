@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Table from './pages/Table';
+import Billing from './components/Billing';
 
 function App() {
   useEffect(() => {
@@ -18,10 +19,14 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<PrivateRoute element={<Home />} />} />
-        <Route path="/signup" element={<PrivateRoute element={<Signup />} />} />
+        <Route path="/signup" element={<Signup />} />
         <Route
           path="/table/:tableId"
           element={<PrivateRoute element={<Table />} />}
+        />
+        <Route
+          path="/billing"
+          element={<PrivateRoute element={<Billing />} />}
         />
       </Routes>
     </Router>

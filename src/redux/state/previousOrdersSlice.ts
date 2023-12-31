@@ -14,7 +14,7 @@ interface OrderDetails {
   total_amount: number;
   created: Date;
   modified: Date;
-  orderedItems: ItemDetails;
+  orderedItems: ItemDetails[];
 }
 
 interface PreviousOrdersState {

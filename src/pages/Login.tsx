@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../components/form.css';
 import { postData } from '../utils/apiUtils';
 
@@ -61,6 +61,12 @@ function Login() {
         <button className="login-button button-design" type="submit">
           Log In
         </button>
+        <p className="signup-text">
+          Do not have an account?{' '}
+          <Link to="/signup" className="signup-link">
+            Signup
+          </Link>
+        </p>
         <p className="error-message">{error}</p>
       </form>
     </div>

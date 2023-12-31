@@ -73,3 +73,13 @@
   height: 50px;
   border-radius:5px;
 }
+
+.signup-text{
+  align-self: center;
+  color: rgba(192, 161, 89, 255);
+}
+
+.signup-link{
+  text-decoration: none;
+  color: rgba(192, 161, 89, 255);
+}

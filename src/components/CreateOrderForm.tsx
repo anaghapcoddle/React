@@ -2,11 +2,16 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import './CreateOrderForm.css';
-import { getData, postData } from '../utils/apiUtils';
+import { useSelector } from 'react-redux';
+import { getData, patchData, postData } from '../utils/apiUtils';
+import { RootState } from '../redux/state/store';
 
 interface MenuItem {
   id: number;
   name: string;
+  category_id: number;
+  price: number;
+  availability: number;
   quantity: number;
 }
 
@@ -84,12 +89,17 @@ function CreateOrderForm() {
     setItemList(updatedMenuItems);
   };
 
+  const reducedOrderDetails = itemList.map(({ id, quantity }) => ({
+    id,
+    quantity,
+  }));
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const reducedOrderDetails = itemList.map(({ id, quantity }) => ({
-      id,
-      quantity,
-    }));
+    // const reducedOrderDetails = itemList.map(({ id, quantity }) => ({
+    //   id,
+    //   quantity,
+    // }));
     const res = await postData(`${process.env.REACT_APP_API_URL}/orders/add`, {
       employeeId,
       tableId,
@@ -101,6 +111,37 @@ function CreateOrderForm() {
       setSuccessMessage('Order created successfully.');
     }
   };
+
+  const handleBillgenerate = () => {
+    // localStorage.removeItem('token');
+    window.location.href = '/billing';
+  };
+
+  const orders = useSelector(
+    (state: RootState) => state.previousOrders.orderArray
+  );
+
+  const filteredOrders = orders.filter(
+    (order) =>
+      order.dining_table_id === parseInt(tableId || '0', 10) &&
+      order.status == 0
+  );
+
+  const updateOrder = async () => {
+    const res = await patchData(
+      `${process.env.REACT_APP_API_URL}/orders/update`,
+      {
+        orderNumber: filteredOrders[0].id,
+        items: reducedOrderDetails,
+      }
+    );
+    if (res.error) {
+      setError(res.error.response?.data?.error);
+    } else {
+      setSuccessMessage('Order updated successfully.');
+    }
+  };
+
 
   return (
     <form className="order-page-content" onSubmit={handleSubmit}>
@@ -223,9 +264,25 @@ function CreateOrderForm() {
           </div>
         ))}
       </div>
-      <button className="create-order-button button-design" type="submit">
-        Create Order
-      </button>
+      <div className="page-bottom-buttons">
+        <button className="create-order-button button-design" type="submit">
+          Create Order
+        </button>
+        <button
+          className="generate-bill button-design"
+          type="button"
+          onClick={updateOrder}
+        >
+          Update Order
+        </button>
+        <button
+          className="generate-bill button-design"
+          type="button"
+          onClick={handleBillgenerate}
+        >
+          Generate Bill
+        </button>
+      </div>
       <p className="error-message">{error}</p>
       <p className="success-message">{successMessage}</p>
     </form>
