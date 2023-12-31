@@ -6,8 +6,8 @@ import PrivateRoute from './utils/privateRoute';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
-import Table from './pages/Table';
-import Billing from './components/Billing';
+import AddOrder from './pages/AddOrder';
+import Billing from './pages/Billing';
 
 function App() {
   useEffect(() => {
@@ -22,10 +22,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route
           path="/table/:tableId"
-          element={<PrivateRoute element={<Table />} />}
+          element={<PrivateRoute element={<AddOrder />} />}
         />
         <Route
-          path="/billing"
+          path="/billing/:orderId"
           element={<PrivateRoute element={<Billing />} />}
         />
       </Routes>

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { RootState } from '../redux/state/store';
 import { deleteData, getData, patchData } from '../utils/apiUtils';
 import { addOrder } from '../redux/state/previousOrdersSlice';
+import './PreviousOrders.css';
 
 interface MenuItem {
   id: number;
@@ -119,42 +120,55 @@ function PreviousOrders() {
 
   return (
     <aside>
-      <h2>Previously ordered</h2>
-      <ul>
+      <h2 className="add-order-heading">ORDERS SENT TO KITCHEN</h2>
+      <ul className="previous-order-item-list">
         {updatedOrderList.map((item) => (
           <li key={item.id}>
-            <span>{item.name}</span>
-            <button
-              type="button"
-              onClick={() => {
-                handleDecrement(item.id);
-              }}
-            >
-              -
-            </button>
-            <span>{item.quantity}</span>
-            <button
-              type="button"
-              onClick={() => {
-                handleIncrement(item.id);
-              }}
-            >
-              +
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleDelete(item, filteredOrders[0].id);
-              }}
-            >
-              Delete
-            </button>
+            <div className="previous-order-column">
+              <span>{item.name}</span>
+            </div>
+            <div className="previous-order-column increment-button-container">
+              <button
+                type="button" className="button-design"
+                onClick={() => {
+                  handleDecrement(item.id);
+                }}
+              >
+                -
+              </button>
+              <span>{item.quantity}</span>
+              <button
+                type="button" className="button-design"
+                onClick={() => {
+                  handleIncrement(item.id);
+                }}
+              >
+                +
+              </button>
+            </div>
+            <div className="previous-order-column">
+              <button
+                type="button"
+                className="button-design"
+                onClick={() => {
+                  handleDelete(item, filteredOrders[0].id);
+                }}
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
-      <button type="button" onClick={updateOrder}>
-        Update Order
-      </button>
+      <div className="previous-order-update-button-container">
+        <button
+          type="button"
+          onClick={updateOrder}
+          className="button-design previous-order-update-button"
+        >
+          Update Order
+        </button>
+      </div>
       <p className="error-message">{error}</p>
       <p className="success-message">{successMessage}</p>
     </aside>

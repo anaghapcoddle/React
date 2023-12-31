@@ -35,7 +35,7 @@ export const deleteData = async (url: string, data: any) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      data: data,
+      data,
     });
     return { data: response.data, error: null };
   } catch (error: any) {

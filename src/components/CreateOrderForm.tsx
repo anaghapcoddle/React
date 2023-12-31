@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import './CreateOrderForm.css';
@@ -96,10 +96,6 @@ function CreateOrderForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const reducedOrderDetails = itemList.map(({ id, quantity }) => ({
-    //   id,
-    //   quantity,
-    // }));
     const res = await postData(`${process.env.REACT_APP_API_URL}/orders/add`, {
       employeeId,
       tableId,
@@ -110,11 +106,6 @@ function CreateOrderForm() {
     } else {
       setSuccessMessage('Order created successfully.');
     }
-  };
-
-  const handleBillgenerate = () => {
-    // localStorage.removeItem('token');
-    window.location.href = '/billing';
   };
 
   const orders = useSelector(
@@ -141,7 +132,6 @@ function CreateOrderForm() {
       setSuccessMessage('Order updated successfully.');
     }
   };
-
 
   return (
     <form className="order-page-content" onSubmit={handleSubmit}>
@@ -275,13 +265,17 @@ function CreateOrderForm() {
         >
           Update Order
         </button>
-        <button
-          className="generate-bill button-design"
-          type="button"
-          onClick={handleBillgenerate}
+        <Link
+          to={
+            filteredOrders.length > 0
+              ? `/billing/${filteredOrders[0].id}`
+              : '/table/:tableId'
+          }
         >
-          Generate Bill
-        </button>
+          <button className="generate-bill button-design" type="button">
+            Generate Bill
+          </button>
+        </Link>
       </div>
       <p className="error-message">{error}</p>
       <p className="success-message">{successMessage}</p>

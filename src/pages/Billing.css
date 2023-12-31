@@ -1,0 +1,52 @@
+.bill {
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  border-top: 1px dotted black;
+  border-bottom: 1px dotted black;
+}
+
+tr.total {
+  font-weight: bold;
+  border-top: 1px dotted black;
+  border-bottom: 1px dotted black;
+}
+
+.bill-info {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.bill-info p {
+  margin: 0;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .bill * {
+    visibility: visible;
+  }
+}

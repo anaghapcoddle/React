@@ -45,11 +45,6 @@ function Header() {
               </Link>
             </li>
             <li className="navigation-bar-item">
-              <Link to="/billing" className="navigation-link">
-                BILLING
-              </Link>
-            </li>
-            <li className="navigation-bar-item">
               <button
                 type="button"
                 className="signout-button"

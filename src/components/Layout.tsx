@@ -11,7 +11,7 @@ function Layout({ children }: LayoutProps): JSX.Element {
   return (
     <div className="Layout-wrapper">
       <Header />
-      <main>{children}</main>
+      <main className="Content-wrapper">{children}</main>
       <Footer />
     </div>
   );
