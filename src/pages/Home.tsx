@@ -1,22 +1,73 @@
 import { Link } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
 import './Home.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useEffect } from 'react';
 import Layout from '../components/Layout';
+import { RootState } from '../redux/state/store';
+import { getData } from '../utils/apiUtils';
+import { addOrder } from '../redux/state/previousOrdersSlice';
+import { setUserDetails } from '../redux/state/userSlice';
 
-interface DecodedToken {
-  id: string;
+// interface MenuItem {
+//   id: number;
+//   name: string;
+//   quantity: number;
+// }
+
+// interface OrderDetails {
+//   dining_table_id: number;
+//   id: number;
+//   employee_id: number;
+//   status: number;
+//   total_amount: number;
+//   created: Date;
+//   modified: Date;
+//   orderedItems: MenuItem[];
+// }
+
+interface UserDetails {
+  id: number;
   firstName: string;
   email: string;
+  role: number;
+  iat: number;
+  exp: number;
 }
 
 function Home() {
-  const token = localStorage.getItem('token');
-  const decoded: DecodedToken = jwtDecode(token as string);
-  const { firstName } = decoded;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function fetchUserDetails() {
+      const userDetailsResult = await getData(
+        `${process.env.REACT_APP_API_URL}/auth/getuserdetails`
+      );
+      const userDetails: UserDetails = userDetailsResult.data.user;
+      dispatch(setUserDetails(userDetails));
+    }
+    fetchUserDetails();
+  }, [dispatch]);
+
+  const userDetails = useSelector((state: RootState) => state.user.userDetails);
+
+  const firstName = userDetails ? userDetails.firstName : 'Guest';
+
+  const getOrders = useCallback(async () => {
+    const getOrdersResult = await getData(
+      `${process.env.REACT_APP_API_URL}/orders/view`
+    );
+    const fetchedOrders = getOrdersResult.data.data;
+
+    dispatch(addOrder(fetchedOrders));
+  }, [dispatch]);
+
+  useEffect(() => {
+    getOrders();
+  }, [getOrders]);
 
   return (
-    <div className="home">
-      <Layout>
+    <Layout>
+      <div className="home">
         <div className="home-content container">
           <div className="welcome-text-container">
             <span className="homepage-text">Welcome {firstName}!</span>
@@ -63,8 +114,8 @@ function Home() {
             </Link>
           </div>
         </div>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
 

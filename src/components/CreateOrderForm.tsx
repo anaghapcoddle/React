@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { jwtDecode } from 'jwt-decode';
 import './CreateOrderForm.css';
 import { useSelector } from 'react-redux';
 import { getData, patchData, postData } from '../utils/apiUtils';
@@ -15,16 +14,10 @@ interface MenuItem {
   quantity: number;
 }
 
-interface DecodedToken {
-  id: string;
-  firstName: string;
-  email: string;
-}
-
 function CreateOrderForm() {
-  const token = localStorage.getItem('token');
-  const decoded: DecodedToken = jwtDecode(token as string);
-  const employeeId = decoded.id;
+  const userDetails = useSelector((state: RootState) => state.user.userDetails);
+
+  const employeeId = userDetails ? userDetails.id : 0;
 
   const { tableId } = useParams<{ tableId: string }>();
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -114,7 +107,7 @@ function CreateOrderForm() {
 
   const filteredOrders = orders.filter(
     (order) =>
-      order.dining_table_id === parseInt(tableId || '0', 10) &&
+      order.dining_table_id === parseInt(tableId ?? '0', 10) &&
       order.status == 0
   );
 
@@ -137,7 +130,7 @@ function CreateOrderForm() {
     <form className="order-page-content" onSubmit={handleSubmit}>
       <div className="heading">
         <h1 className="form-title add-order-heading">
-          ORDER FOR TABLE {tableId}
+          Order For Table {tableId}
         </h1>
       </div>
       <div className="order-items-wrapper">
@@ -255,14 +248,10 @@ function CreateOrderForm() {
         ))}
       </div>
       <div className="page-bottom-buttons">
-        <button className="create-order-button button-design" type="submit">
+        <button className="button-design" type="submit">
           Create Order
         </button>
-        <button
-          className="generate-bill button-design"
-          type="button"
-          onClick={updateOrder}
-        >
+        <button className="button-design" type="button" onClick={updateOrder}>
           Update Order
         </button>
         <Link
@@ -272,7 +261,7 @@ function CreateOrderForm() {
               : '/table/:tableId'
           }
         >
-          <button className="generate-bill button-design" type="button">
+          <button className="button-design" type="button">
             Generate Bill
           </button>
         </Link>

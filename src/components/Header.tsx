@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import './Header.css';
 
+interface DecodedToken {
+  id: number;
+  firstName: string;
+  email: string;
+  role: number;
+}
+
 function Header() {
+  const token = localStorage.getItem('token');
+  const decoded: DecodedToken = jwtDecode(token as string);
+  const { role } = decoded;
   const handleSignOut = () => {
     localStorage.removeItem('token');
     window.location.href = '/';
@@ -17,6 +28,13 @@ function Header() {
         </div>
         <div className="Navigation-bar">
           <ul>
+            {role === 1 && (
+              <li className="navigation-bar-item">
+                <Link to="/employees" className="navigation-link">
+                  EMPLOYEES
+                </Link>
+              </li>
+            )}
             <li className="navigation-bar-item">
               <Link to="/" className="navigation-link">
                 TABLES
@@ -26,18 +44,6 @@ function Header() {
               <Link to="/orders" className="navigation-link">
                 ORDERS
               </Link>
-              <ul className="navigation-sub-links-wrapper">
-                <li>
-                  <Link to="/take-orders" className="navigation-sub-links">
-                    Take Orders
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/order-history" className="navigation-sub-links">
-                    Order History
-                  </Link>
-                </li>
-              </ul>
             </li>
             <li className="navigation-bar-item">
               <Link to="/reservation" className="navigation-link">

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './utils/privateRoute';
 
@@ -8,6 +7,9 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import AddOrder from './pages/AddOrder';
 import Billing from './pages/Billing';
+import Employees from './pages/Employees';
+import Orders from './pages/Orders';
+import OrderDetails from './pages/OrderDetails';
 
 function App() {
   useEffect(() => {
@@ -18,8 +20,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<PrivateRoute element={<Home />} />} />
         <Route path="/signup" element={<Signup />} />
+
+        <Route path="/" element={<PrivateRoute element={<Home />} />} />
         <Route
           path="/table/:tableId"
           element={<PrivateRoute element={<AddOrder />} />}
@@ -28,6 +31,23 @@ function App() {
           path="/billing/:orderId"
           element={<PrivateRoute element={<Billing />} />}
         />
+        <Route
+          path="/employees"
+          element={<PrivateRoute element={<Employees />} />}
+        />
+        <Route path="/orders" element={<PrivateRoute element={<Orders />} />} />
+        <Route
+          path="/order-details/:orderId"
+          element={<PrivateRoute element={<OrderDetails />} />}
+        />
+        <Route
+          path="/order-details/:orderId"
+          element={<PrivateRoute element={<OrderDetails />} />}
+        />
+        {/* <Route
+          path="/getdetails/:orderId"
+          element={<PrivateRoute element={<GetOrderDetails />} />}
+        /> */}
       </Routes>
     </Router>
   );

@@ -1,13 +1,15 @@
-.add-order-heading{
+.add-order-heading {
     color: rgba(0, 67, 50, 255);
 }
 
 .order-page-content {
-    padding: 20px 0px;
+    padding: 20px 40px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* min-height: 70vh; */ 
+    box-shadow: inset 0 0 0 2px rgba(0, 67, 50, 255);
+    border-radius: 10px;
 }
 
 .order-item {
@@ -22,52 +24,54 @@
     grid-template-rows: 35px 50px;
 }
 
-.menu-item-dropdown{
+.menu-item-dropdown {
     width: 250px;
     height: 35px;
-    /* background-color: rgba(192, 161, 89, 255);
-    color: black;
-    border: none; */
+    height: 45px;
+    font-size: 16px;
 }
 
-.quantity-buttons-wrapper, .add-item-button-wrapper{
+.quantity-buttons-wrapper,
+.add-item-button-wrapper {
     height: 35px;
 }
 
-.quantity-buttons-wrapper{
+.quantity-buttons-wrapper {
     width: 65px;
     display: flex;
     justify-content: center;
 }
 
-.add-item-button-wrapper{
+.add-item-button-wrapper {
     width: 75px;
 }
 
-.quantity-update-button, .add-item-button{
+.quantity-update-button,
+.add-item-button {
     padding: 10px;
     background: none;
     color: rgba(192, 161, 89, 255);
 }
 
-.quantity-update-button{
+.quantity-update-button {
     font-size: 15px;
     border: none;
+    font-size: 27px;
 }
 
-.display-item{
+.display-item {
     display: grid;
     grid-template-columns: 300px 300px 300px;
     justify-items: center;
     align-items: center;
 }
 
-.view-added-elements-wrapper{
+.view-added-elements-wrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 40px;
-    padding: 10px;
+    margin: 40px 0px;
+    padding: 10px 0px;
     color: rgba(0, 67, 50, 255);
 }
 
@@ -75,48 +79,44 @@
     border-style: solid;
     border-width: 1px;
     border-color: rgba(0, 67, 50, 255);
-  }
+}
 
-.dropdown-label{
+.dropdown-label {
     color: rgba(0, 67, 50, 255);
     font-weight: 600;
     font-size: x-large;
     font-family: fangsong, serif;
 }
 
-.add-item-button{
+.add-item-button {
     width: 104%;
     background-color: rgba(0, 67, 50, 255);
 }
 
-.success-message{
+.success-message {
     color: rgba(0, 67, 50, 255);
     text-align: center;
-  }
-
-.create-order-button, .generate-bill{
-    padding: 10px;
 }
 
-.quantity-container{
+.quantity-container {
     align-self: center;
     color: rgba(192, 161, 89, 255);
 }
 
-.added-elements-quantity-buttons{
+.added-elements-quantity-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
 }
 
-.decrement-button, .increment-button{
- border-radius: 70%;
- height: 30px;
- width: 30px;
- font-size: larger;
+.page-bottom-buttons {
+    display: flex;
 }
 
-.page-bottom-buttons{
-    display: flex;
+.page-bottom-buttons button {
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 13px;
 }

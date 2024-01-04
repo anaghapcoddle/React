@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../components/Layout';
 import CreateOrderForm from '../components/CreateOrderForm';
 import PreviousOrders from '../components/PreviousOrders';
 import './AddOrder.css';
+import Layout from '../components/Layout';
 
 function Table() {
   return (

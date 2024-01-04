@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface ItemDetails {
-  id: number;
-  name: string;
-  quantity: number;
-}
+// interface ItemDetails {
+//   id: number;
+//   name: string;
+//   quantity: number;
+// }
 
 interface OrderDetails {
   dining_table_id: number;
@@ -14,7 +14,11 @@ interface OrderDetails {
   total_amount: number;
   created: Date;
   modified: Date;
-  orderedItems: ItemDetails[];
+  orderedItems: {
+    id: number;
+    name: string;
+    quantity: number;
+  }[];
 }
 
 interface PreviousOrdersState {
@@ -29,8 +33,8 @@ const previousOrderSlice = createSlice({
   name: 'previousOrders',
   initialState,
   reducers: {
-    addOrder: (state, action: PayloadAction<OrderDetails>) => {
-      state.orderArray.push(action.payload);
+    addOrder: (state, action: PayloadAction<OrderDetails[]>) => {
+      state.orderArray = action.payload;
     },
   },
 });

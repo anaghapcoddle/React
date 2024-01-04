@@ -45,7 +45,6 @@ tr.total {
   body * {
     visibility: hidden;
   }
-
   .bill * {
     visibility: visible;
   }

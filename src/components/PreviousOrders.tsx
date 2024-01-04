@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from '../redux/state/store';
-import { deleteData, getData, patchData } from '../utils/apiUtils';
-import { addOrder } from '../redux/state/previousOrdersSlice';
+import { deleteData, patchData } from '../utils/apiUtils';
 import './PreviousOrders.css';
 
 interface MenuItem {
@@ -12,60 +11,36 @@ interface MenuItem {
   quantity: number;
 }
 
-interface OrderDetails {
-  dining_table_id: number;
-  id: number;
-  employee_id: number;
-  status: number;
-  total_amount: number;
-  created: Date;
-  modified: Date;
-  orderedItems: MenuItem[];
-}
-
 function PreviousOrders() {
-  const dispatch = useDispatch();
   const { tableId } = useParams<{ tableId: string }>();
-  const [updatedOrderList, setUpdatedOrderList] = useState<MenuItem[]>([]);
   const [error, setError] = useState<any>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
-
+  const [orderId, setOrderId] = useState<number>(0);
+  // const [orderId, setOrderId] = useState<number | null>(null);
   const orders = useSelector(
     (state: RootState) => state.previousOrders.orderArray
   );
 
-  const getOrders = useCallback(async () => {
-    const getOrdersResult = await getData(
-      `${process.env.REACT_APP_API_URL}/orders/view`
-    );
-    const fetchedOrders = getOrdersResult.data.data;
-
-    fetchedOrders.forEach((order: OrderDetails) => {
-      const existingOrder = orders.find(
-        (currentOrder) => currentOrder.id === order.id
-      );
-      if (!existingOrder) {
-        dispatch(addOrder(order));
-      }
-    });
-  }, [dispatch, orders]);
-
-  const filteredOrders = orders.filter(
-    (order) =>
-      order.dining_table_id === parseInt(tableId || '0', 10) &&
-      order.status == 0
-  );
+  const [initialOrder, setInitialOrder] = useState<MenuItem[]>([]);
+  const [updatedOrderList, setUpdatedOrderList] = useState<MenuItem[]>([]);
 
   useEffect(() => {
-    getOrders();
-
-    if (
-      filteredOrders.length > 0 &&
-      Object.keys(updatedOrderList).length == 0
-    ) {
-      setUpdatedOrderList(filteredOrders[0].orderedItems);
+    const filteredInitialOrder = orders.filter(
+      (order) =>
+        order.dining_table_id === parseInt(tableId ?? '0', 10) &&
+        order.status === 0
+    );
+    // setOrderId(filteredInitialOrder[0].id);
+    if (filteredInitialOrder.length > 0) {
+      const newInitialOrder = filteredInitialOrder[0].orderedItems;
+      setInitialOrder(newInitialOrder);
+      setUpdatedOrderList(newInitialOrder);
+      setOrderId(filteredInitialOrder[0].id);
+    } else {
+      setInitialOrder([]);
+      setUpdatedOrderList([]);
     }
-  }, [getOrders, filteredOrders, updatedOrderList]);
+  }, [orders, tableId]);
 
   const handleDecrement = (itemId: number) => {
     const updatedItems = updatedOrderList.map((item) =>
@@ -107,7 +82,7 @@ function PreviousOrders() {
     const res = await patchData(
       `${process.env.REACT_APP_API_URL}/orders/update`,
       {
-        orderNumber: filteredOrders[0].id,
+        orderNumber: orderId,
         items: updatedOrderList,
       }
     );
@@ -120,7 +95,7 @@ function PreviousOrders() {
 
   return (
     <aside>
-      <h2 className="add-order-heading">ORDERS SENT TO KITCHEN</h2>
+      <h2 className="add-order-heading">Orders Sent to Kitchen</h2>
       <ul className="previous-order-item-list">
         {updatedOrderList.map((item) => (
           <li key={item.id}>
@@ -129,7 +104,8 @@ function PreviousOrders() {
             </div>
             <div className="previous-order-column increment-button-container">
               <button
-                type="button" className="button-design"
+                type="button"
+                className="button-design"
                 onClick={() => {
                   handleDecrement(item.id);
                 }}
@@ -138,7 +114,8 @@ function PreviousOrders() {
               </button>
               <span>{item.quantity}</span>
               <button
-                type="button" className="button-design"
+                type="button"
+                className="button-design"
                 onClick={() => {
                   handleIncrement(item.id);
                 }}
@@ -151,7 +128,7 @@ function PreviousOrders() {
                 type="button"
                 className="button-design"
                 onClick={() => {
-                  handleDelete(item, filteredOrders[0].id);
+                  handleDelete(item, orderId);
                 }}
               >
                 Delete

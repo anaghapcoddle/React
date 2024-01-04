@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Layout from '../components/Layout';
 import { postData } from '../utils/apiUtils';
 import './Billing.css';
+import Layout from '../components/Layout';
 
 interface OrderedItem {
   itemName: string;
@@ -55,15 +55,14 @@ function Billing() {
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.orderedItems.map((item) => (
-                <tr key={item.itemName}>
-                  <td>{item.itemName}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.rate}</td>
-                  <td>{item.amount}</td>
-                </tr>
-              ))}
+            {data?.orderedItems.map((item) => (
+              <tr key={item.itemName}>
+                <td>{item.itemName}</td>
+                <td>{item.quantity}</td>
+                <td>{item.rate}</td>
+                <td>{item.amount}</td>
+              </tr>
+            ))}
             {data && (
               <tr className="total">
                 <td colSpan={3}>Total</td>
