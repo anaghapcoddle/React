@@ -45,11 +45,11 @@ function Header() {
                 ORDERS
               </Link>
             </li>
-            <li className="navigation-bar-item">
+            {/* <li className="navigation-bar-item">
               <Link to="/reservation" className="navigation-link">
                 RESERVATION
               </Link>
-            </li>
+            </li> */}
             <li className="navigation-bar-item">
               <button
                 type="button"

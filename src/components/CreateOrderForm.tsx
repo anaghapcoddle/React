@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './CreateOrderForm.css';
 import { useSelector } from 'react-redux';
 import { getData, patchData, postData } from '../utils/apiUtils';
@@ -16,9 +16,7 @@ interface MenuItem {
 
 function CreateOrderForm() {
   const userDetails = useSelector((state: RootState) => state.user.userDetails);
-
   const employeeId = userDetails ? userDetails.id : 0;
-
   const { tableId } = useParams<{ tableId: string }>();
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [option, setOption] = useState<number | undefined>();
@@ -26,18 +24,19 @@ function CreateOrderForm() {
   const [error, setError] = useState<any>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
 
-  useEffect(() => {
-    async function GetMenuData() {
-      const res = await getData(`${process.env.REACT_APP_API_URL}/menu/view`);
-      const { data } = res.data;
-      const menuItemsWithQuantity: MenuItem[] = data.map((item: MenuItem) => ({
-        ...item,
-        quantity: 1,
-      }));
-      setMenuItems(menuItemsWithQuantity);
-    }
-    GetMenuData();
+  const getMenuData = useCallback(async () => {
+    const res = await getData(`${process.env.REACT_APP_API_URL}/menu/view`);
+    const { menu } = res.data;
+    const menuItemsWithQuantity: MenuItem[] = menu.map((item: MenuItem) => ({
+      ...item,
+      quantity: 1,
+    }));
+    setMenuItems(menuItemsWithQuantity);
   }, []);
+
+  useEffect(() => {
+    getMenuData();
+  }, [getMenuData]);
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const value = parseInt(event.target.value, 10);

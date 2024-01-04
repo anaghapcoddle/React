@@ -10,6 +10,7 @@ import Billing from './pages/Billing';
 import Employees from './pages/Employees';
 import Orders from './pages/Orders';
 import OrderDetails from './pages/OrderDetails';
+import EmployeeDetails from './pages/EmployeeDetails';
 
 function App() {
   useEffect(() => {
@@ -41,13 +42,9 @@ function App() {
           element={<PrivateRoute element={<OrderDetails />} />}
         />
         <Route
-          path="/order-details/:orderId"
-          element={<PrivateRoute element={<OrderDetails />} />}
+          path="/employee-details/:employeeId"
+          element={<PrivateRoute element={<EmployeeDetails />} />}
         />
-        {/* <Route
-          path="/getdetails/:orderId"
-          element={<PrivateRoute element={<GetOrderDetails />} />}
-        /> */}
       </Routes>
     </Router>
   );

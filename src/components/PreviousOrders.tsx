@@ -16,7 +16,6 @@ function PreviousOrders() {
   const [error, setError] = useState<any>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [orderId, setOrderId] = useState<number>(0);
-  // const [orderId, setOrderId] = useState<number | null>(null);
   const orders = useSelector(
     (state: RootState) => state.previousOrders.orderArray
   );
@@ -30,7 +29,6 @@ function PreviousOrders() {
         order.dining_table_id === parseInt(tableId ?? '0', 10) &&
         order.status === 0
     );
-    // setOrderId(filteredInitialOrder[0].id);
     if (filteredInitialOrder.length > 0) {
       const newInitialOrder = filteredInitialOrder[0].orderedItems;
       setInitialOrder(newInitialOrder);

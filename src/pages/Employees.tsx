@@ -1,36 +1,35 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Employees.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { getData } from '../utils/apiUtils';
 import Layout from '../components/Layout';
-
-interface EmployeeData {
-  id: number;
-  firstName: string;
-  lastName: string;
-  phone: string;
-  address: string;
-  jobId: number;
-  salary: number;
-  username: string;
-  password: string;
-  roleId: number;
-  created: Date;
-  modified: Date;
-}
+import { setEmployeeDetails } from '../redux/state/employeeDetailsSlice';
+import { RootState } from '../redux/state/store';
 
 function Employees() {
-  const [employeeData, setEmployeeData] = useState<EmployeeData[]>([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const getEmployeeDetails = useCallback(async () => {
-    const result = await getData(
+    const getEmployeeResult = await getData(
       `${process.env.REACT_APP_API_URL}/admin/employee/view`
     );
-    setEmployeeData(result.data.data);
-  }, []);
+    const employeeData = getEmployeeResult.data.employees;
+    dispatch(setEmployeeDetails(employeeData));
+  }, [dispatch]);
 
   useEffect(() => {
     getEmployeeDetails();
   }, [getEmployeeDetails]);
+
+  const employeeData = useSelector(
+    (state: RootState) => state.employeeDetails.employeeDetails
+  );
+
+  const showOrderDetails = (employee: number) => {
+    navigate(`/employee-details/${employee}`);
+  };
 
   return (
     <Layout>
@@ -59,7 +58,7 @@ function Employees() {
                   <button
                     type="button"
                     className="view-details-btn"
-                    // onClick={() => handleViewDetails(employee.id)}
+                    onClick={() => showOrderDetails(employee.id)}
                   >
                     View Details
                   </button>

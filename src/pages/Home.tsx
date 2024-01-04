@@ -8,32 +8,6 @@ import { getData } from '../utils/apiUtils';
 import { addOrder } from '../redux/state/previousOrdersSlice';
 import { setUserDetails } from '../redux/state/userSlice';
 
-// interface MenuItem {
-//   id: number;
-//   name: string;
-//   quantity: number;
-// }
-
-// interface OrderDetails {
-//   dining_table_id: number;
-//   id: number;
-//   employee_id: number;
-//   status: number;
-//   total_amount: number;
-//   created: Date;
-//   modified: Date;
-//   orderedItems: MenuItem[];
-// }
-
-interface UserDetails {
-  id: number;
-  firstName: string;
-  email: string;
-  role: number;
-  iat: number;
-  exp: number;
-}
-
 function Home() {
   const dispatch = useDispatch();
 
@@ -42,22 +16,20 @@ function Home() {
       const userDetailsResult = await getData(
         `${process.env.REACT_APP_API_URL}/auth/getuserdetails`
       );
-      const userDetails: UserDetails = userDetailsResult.data.user;
+      const userDetails = userDetailsResult.data.user;
       dispatch(setUserDetails(userDetails));
     }
     fetchUserDetails();
   }, [dispatch]);
 
   const userDetails = useSelector((state: RootState) => state.user.userDetails);
-
   const firstName = userDetails ? userDetails.firstName : 'Guest';
 
   const getOrders = useCallback(async () => {
     const getOrdersResult = await getData(
       `${process.env.REACT_APP_API_URL}/orders/view`
     );
-    const fetchedOrders = getOrdersResult.data.data;
-
+    const fetchedOrders = getOrdersResult.data.orders;
     dispatch(addOrder(fetchedOrders));
   }, [dispatch]);
 

@@ -1,11 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-// interface ItemDetails {
-//   id: number;
-//   name: string;
-//   quantity: number;
-// }
-
 interface OrderDetails {
   dining_table_id: number;
   id: number;

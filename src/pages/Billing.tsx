@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { postData } from '../utils/apiUtils';
 import './Billing.css';
@@ -23,16 +23,17 @@ function Billing() {
   const { orderId } = useParams();
   const [data, setData] = useState<BillData | null>(null);
 
-  useEffect(() => {
-    async function GetBillDetails() {
-      const result = await postData(
-        `${process.env.REACT_APP_API_URL}/bill/createbill`,
-        { orderId }
-      );
-      setData(result.data.data);
-    }
-    GetBillDetails();
+  const getBillDetails = useCallback(async () => {
+    const result = await postData(
+      `${process.env.REACT_APP_API_URL}/bill/createbill`,
+      { orderId }
+    );
+    setData(result.data.bill);
   }, [orderId]);
+
+  useEffect(() => {
+    getBillDetails();
+  }, [getBillDetails]);
 
   return (
     <Layout>
