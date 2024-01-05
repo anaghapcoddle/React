@@ -60,7 +60,7 @@ function Employees() {
                     className="view-details-btn"
                     onClick={() => showOrderDetails(employee.id)}
                   >
-                    View Details
+                    Edit Details
                   </button>
                 </td>
               </tr>
