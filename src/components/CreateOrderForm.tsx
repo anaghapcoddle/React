@@ -21,7 +21,7 @@ function CreateOrderForm() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [option, setOption] = useState<number | undefined>();
   const [itemList, setItemList] = useState<MenuItem[]>([]);
-  const [error, setError] = useState<any>('');
+  const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
 
   const getMenuData = useCallback(async () => {
@@ -101,7 +101,7 @@ function CreateOrderForm() {
   };
 
   const orders = useSelector(
-    (state: RootState) => state.previousOrders.orderArray
+    (state: RootState) => state.previousOrders.orderDetails
   );
 
   const filteredOrders = orders.filter(

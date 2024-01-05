@@ -16,7 +16,7 @@ function Signup() {
     email: '',
     password: '',
   });
-  const [error, setError] = useState<any>('');
+  const [error, setError] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

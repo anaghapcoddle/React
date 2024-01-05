@@ -8,7 +8,7 @@ function OrderDetails() {
   const { orderId } = useParams<{ orderId: string }>();
 
   const orders = useSelector(
-    (state: RootState) => state.previousOrders.orderArray
+    (state: RootState) => state.previousOrders.orderDetails
   );
 
   const currentOrder = orders.filter(
@@ -39,7 +39,7 @@ function OrderDetails() {
             {' '}
             Total Amount: {currentOrder[0].total_amount}{' '}
           </p>
-          <p className="order-info"> Created: {currentOrder[0].created} </p>
+          <p className="order-info">Created: {currentOrder[0].created} </p>
           <p className="order-info"> Modified: {currentOrder[0].modified} </p>
         </div>
         <div className="ordered-items">

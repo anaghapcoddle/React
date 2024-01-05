@@ -5,7 +5,7 @@ import { useCallback, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { RootState } from '../redux/state/store';
 import { getData } from '../utils/apiUtils';
-import { addOrder } from '../redux/state/previousOrdersSlice';
+import { setOrderDetails } from '../redux/state/previousOrdersSlice';
 import { setUserDetails } from '../redux/state/userSlice';
 
 function Home() {
@@ -30,7 +30,7 @@ function Home() {
       `${process.env.REACT_APP_API_URL}/orders/view`
     );
     const fetchedOrders = getOrdersResult.data.orders;
-    dispatch(addOrder(fetchedOrders));
+    dispatch(setOrderDetails(fetchedOrders));
   }, [dispatch]);
 
   useEffect(() => {

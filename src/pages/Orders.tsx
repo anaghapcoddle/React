@@ -7,7 +7,7 @@ import './Orders.css';
 function Orders() {
   const navigate = useNavigate();
   const orders = useSelector(
-    (state: RootState) => state.previousOrders.orderArray
+    (state: RootState) => state.previousOrders.orderDetails
   );
 
   const showOrderDetails = (order: number) => {

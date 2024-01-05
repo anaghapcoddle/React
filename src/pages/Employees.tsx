@@ -23,7 +23,7 @@ function Employees() {
     getEmployeeDetails();
   }, [getEmployeeDetails]);
 
-  const employeeData = useSelector(
+  const employees = useSelector(
     (state: RootState) => state.employeeDetails.employeeDetails
   );
 
@@ -47,7 +47,7 @@ function Employees() {
             </tr>
           </thead>
           <tbody>
-            {employeeData.map((employee) => (
+            {employees.map((employee) => (
               <tr key={employee.id}>
                 <td>{employee.id}</td>
                 <td>{employee.firstName}</td>

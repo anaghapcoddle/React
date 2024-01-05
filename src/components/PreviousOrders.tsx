@@ -17,25 +17,22 @@ function PreviousOrders() {
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [orderId, setOrderId] = useState<number>(0);
   const orders = useSelector(
-    (state: RootState) => state.previousOrders.orderArray
+    (state: RootState) => state.previousOrders.orderDetails
   );
 
-  const [initialOrder, setInitialOrder] = useState<MenuItem[]>([]);
   const [updatedOrderList, setUpdatedOrderList] = useState<MenuItem[]>([]);
 
   useEffect(() => {
-    const filteredInitialOrder = orders.filter(
+    const filteredOrder = orders.filter(
       (order) =>
         order.dining_table_id === parseInt(tableId ?? '0', 10) &&
         order.status === 0
     );
-    if (filteredInitialOrder.length > 0) {
-      const newInitialOrder = filteredInitialOrder[0].orderedItems;
-      setInitialOrder(newInitialOrder);
+    if (filteredOrder.length > 0) {
+      const newInitialOrder = filteredOrder[0].orderedItems;
       setUpdatedOrderList(newInitialOrder);
-      setOrderId(filteredInitialOrder[0].id);
+      setOrderId(filteredOrder[0].id);
     } else {
-      setInitialOrder([]);
       setUpdatedOrderList([]);
     }
   }, [orders, tableId]);
