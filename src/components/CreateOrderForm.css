@@ -1,0 +1,121 @@
+.add-order-heading {
+    color: rgba(0, 67, 50, 255);
+}
+
+.order-page-content {
+    padding: 20px 40px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 0 0 2px rgba(0, 67, 50, 255);
+    border-radius: 10px;
+}
+
+.order-item {
+    display: flex;
+}
+
+.order-items-wrapper {
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    justify-items: center;
+    align-items: center;
+    grid-template-rows: 35px 50px;
+}
+
+.menu-item-dropdown {
+    width: 250px;
+    height: 35px;
+    height: 45px;
+    font-size: 16px;
+}
+
+.quantity-buttons-wrapper,
+.add-item-button-wrapper {
+    height: 35px;
+}
+
+.quantity-buttons-wrapper {
+    width: 65px;
+    display: flex;
+    justify-content: center;
+}
+
+.add-item-button-wrapper {
+    width: 75px;
+}
+
+.quantity-update-button,
+.add-item-button {
+    padding: 10px;
+    background: none;
+    color: rgba(192, 161, 89, 255);
+}
+
+.quantity-update-button {
+    font-size: 15px;
+    border: none;
+}
+
+.display-item {
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    justify-items: center;
+    align-items: center;
+}
+
+.view-added-elements-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 40px 0px;
+    padding: 10px 0px;
+    color: rgba(0, 67, 50, 255);
+}
+
+.view-added-elements-wrapper:not(:empty) {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 67, 50, 255);
+}
+
+.dropdown-label {
+    color: rgba(0, 67, 50, 255);
+    font-weight: 600;
+    font-size: x-large;
+    font-family: fangsong, serif;
+}
+
+.add-item-button {
+    width: 104%;
+    background-color: rgba(0, 67, 50, 255);
+}
+
+.success-message {
+    color: rgba(0, 67, 50, 255);
+    text-align: center;
+}
+
+.quantity-container {
+    align-self: center;
+    color: rgba(192, 161, 89, 255);
+}
+
+.added-elements-quantity-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.page-bottom-buttons {
+    display: flex;
+}
+
+.page-bottom-buttons button {
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 13px;
+}
