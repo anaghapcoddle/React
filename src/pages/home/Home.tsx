@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
-import Layout from '../components/Layout';
-import { RootState } from '../redux/state/store';
-import { getData } from '../utils/apiUtils';
-import { setOrderDetails } from '../redux/state/previousOrdersSlice';
-import { setUserDetails } from '../redux/state/userSlice';
+import Layout from '../../components/layout/Layout';
+import { RootState } from '../../redux/state/store';
+import { getData } from '../../utils/apiUtils';
+import { setOrderDetails } from '../../redux/state/previousOrdersSlice';
+import { setUserDetails } from '../../redux/state/userSlice';
 
 function Home() {
   const dispatch = useDispatch();

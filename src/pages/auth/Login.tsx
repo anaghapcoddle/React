@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../components/form.css';
-import { postData } from '../utils/apiUtils';
+import '../../components/auth/form.css';
+import { postData } from '../../utils/apiUtils';
 
 interface Credentials {
   username: string;
@@ -58,7 +58,7 @@ function Login() {
             name="password"
           />
         </div>
-        <button className="login-button button-design" type="submit">
+        <button className="login-button button-design-login-page" type="submit">
           Log In
         </button>
         <p className="signup-text">

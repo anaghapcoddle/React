@@ -1,18 +1,11 @@
 import { Link } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { useSelector } from 'react-redux';
 import './Header.css';
-
-interface DecodedToken {
-  id: number;
-  firstName: string;
-  email: string;
-  role: number;
-}
+import { RootState } from '../../redux/state/store';
 
 function Header() {
-  const token = localStorage.getItem('token');
-  const decoded: DecodedToken = jwtDecode(token as string);
-  const { role } = decoded;
+  const userDetails = useSelector((state: RootState) => state.user.userDetails);
+  const role = userDetails ? userDetails.role : '2';
   const handleSignOut = () => {
     localStorage.removeItem('token');
     window.location.href = '/';
@@ -45,11 +38,6 @@ function Header() {
                 ORDERS
               </Link>
             </li>
-            {/* <li className="navigation-bar-item">
-              <Link to="/reservation" className="navigation-link">
-                RESERVATION
-              </Link>
-            </li> */}
             <li className="navigation-bar-item">
               <button
                 type="button"

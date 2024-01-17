@@ -1,5 +1,5 @@
 .add-order-heading {
-    color: rgba(0, 67, 50, 255);
+    color: rgba(54,54,54,255);
 }
 
 .order-page-content {
@@ -8,8 +8,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: inset 0 0 0 2px rgba(0, 67, 50, 255);
+    box-shadow: inset 0 0 0 2px rgba(215,215,215,255);
     border-radius: 10px;
+    background-color: white;
 }
 
 .order-item {
@@ -50,7 +51,7 @@
 .add-item-button {
     padding: 10px;
     background: none;
-    color: rgba(192, 161, 89, 255);
+    color: rgba(54,54,54,255);
 }
 
 .quantity-update-button {
@@ -81,7 +82,7 @@
 }
 
 .dropdown-label {
-    color: rgba(0, 67, 50, 255);
+    color: rgba(54,54,54,255);
     font-weight: 600;
     font-size: x-large;
     font-family: fangsong, serif;
@@ -89,7 +90,7 @@
 
 .add-item-button {
     width: 104%;
-    background-color: rgba(0, 67, 50, 255);
+    border: none;
 }
 
 .success-message {
@@ -99,7 +100,7 @@
 
 .quantity-container {
     align-self: center;
-    color: rgba(192, 161, 89, 255);
+    color: rgba(54,54,54,255);
 }
 
 .added-elements-quantity-buttons {

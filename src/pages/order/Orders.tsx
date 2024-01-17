@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../redux/state/store';
-import Layout from '../components/Layout';
+import { RootState } from '../../redux/state/store';
+import Layout from '../../components/layout/Layout';
 import './Orders.css';
 
 function Orders() {
@@ -16,8 +16,8 @@ function Orders() {
 
   return (
     <Layout>
-      <div className="order-table-container">
-        <h2>Orders</h2>
+      <div className="order-table-container container">
+        <h2 className="orders-heading">Orders</h2>
         <table className="order-table">
           <thead>
             <tr>

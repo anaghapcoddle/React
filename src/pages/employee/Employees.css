@@ -1,6 +1,7 @@
 .employee-table {
     border-collapse: collapse;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .employee-table th,
@@ -11,9 +12,8 @@
 }
 
 .employee-table th {
-    background-color: #f2f2f2;
-    background-color: rgba(0, 67, 50, 255);
-    color: rgba(192, 161, 89, 255);
+    background-color:  rgba(245,245,245,255);
+    color: rgba(54,54,54,255);
 }
 
 .view-details-btn {
@@ -23,4 +23,12 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.employee-heading{
+    color: rgba(54,54,54,255);
+}
+
+.employee-table-container{
+    color: rgba(54,54,54,255);
 }

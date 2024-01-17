@@ -1,22 +1,18 @@
-import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './utils/privateRoute';
 
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Signup from './pages/Signup';
-import AddOrder from './pages/AddOrder';
-import Billing from './pages/Billing';
-import Employees from './pages/Employees';
-import Orders from './pages/Orders';
-import OrderDetails from './pages/OrderDetails';
-import EmployeeDetails from './pages/EmployeeDetails';
+import Login from './pages/auth/Login';
+import Home from './pages/home/Home';
+import Signup from './pages/auth/Signup';
+import AddOrder from './pages/order/AddOrder';
+import Billing from './pages/bill/Billing';
+import Employees from './pages/employee/Employees';
+import Orders from './pages/order/Orders';
+import OrderDetails from './pages/order/OrderDetails';
+import EmployeeDetails from './pages/employee/EmployeeDetails';
+import PageNotFound from './pages/common/404Page';
 
 function App() {
-  useEffect(() => {
-    document.title = 'Brunch Club';
-  }, []);
-
   return (
     <Router>
       <Routes>
@@ -45,6 +41,7 @@ function App() {
           path="/employee-details/:employeeId"
           element={<PrivateRoute element={<EmployeeDetails />} />}
         />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

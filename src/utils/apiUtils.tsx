@@ -29,17 +29,16 @@ type Billing = {
   orderId: string | undefined;
 };
 
+axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+  'token'
+)}`;
+
 export const postData = async (
   url: string,
   data: AddOrderType | Billing | Credentials | Signupdata | LoginCredentials
 ) => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.post(url, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.post(url, data);
     return { data: response.data, error: null };
   } catch (error: any) {
     return { data: null, error };
@@ -48,12 +47,7 @@ export const postData = async (
 
 export const patchData = async (url: string, data: any) => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.patch(url, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.patch(url, data);
     return { data: response.data, error: null };
   } catch (error: any) {
     return { data: null, error };
@@ -62,13 +56,7 @@ export const patchData = async (url: string, data: any) => {
 
 export const deleteData = async (url: string, data: any) => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.delete(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data,
-    });
+    const response = await axios.delete(url, data);
     return { data: response.data, error: null };
   } catch (error: any) {
     return { data: null, error };
@@ -77,12 +65,7 @@ export const deleteData = async (url: string, data: any) => {
 
 export const getData = async (url: string) => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(url);
     return { data: response.data, error: null };
   } catch (error: any) {
     return { data: null, error };

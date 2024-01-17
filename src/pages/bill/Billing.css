@@ -49,3 +49,16 @@ tr.total {
     visibility: visible;
   }
 }
+
+.print-button{
+  padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 13px;
+}
+
+.billing-page-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

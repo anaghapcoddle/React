@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { RootState } from '../redux/state/store';
-import { setSingleEmployeeDetails } from '../redux/state/employeeDetailsSlice';
-import Layout from '../components/Layout';
-import { patchData } from '../utils/apiUtils';
+import { RootState } from '../../redux/state/store';
+import { setSingleEmployeeDetails } from '../../redux/state/employeeDetailsSlice';
+import Layout from '../../components/layout/Layout';
+import { patchData } from '../../utils/apiUtils';
 import './EmployeeDetails.css';
 
 function EmployeeDetailsForm() {

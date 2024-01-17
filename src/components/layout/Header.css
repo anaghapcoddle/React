@@ -1,7 +1,7 @@
 header {
     background-color: rgba(0, 67, 50, 255);
     font-family: fangsong, serif;
-    color: rgba(192, 161, 89, 255);
+    color: white;
 }
 
 .Header-container {
@@ -20,7 +20,7 @@ header {
 }
 
 .Heading {
-    color: rgba(192, 161, 89, 255);
+    color: white;
     font-size: 50px;
     margin-bottom: 0;
 }
@@ -43,13 +43,13 @@ ul {
 
 .navigation-link {
     display: block;
-    color: rgba(192, 161, 89, 255);
+    color: white;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 .signout-button {
-    color: rgba(192, 161, 89, 255);
+    color: white;
     background-color: rgba(0, 67, 50, 255);
     text-align: center;
     padding: 14px 16px;
@@ -59,7 +59,7 @@ ul {
 
 
 .navigation-link:hover {
-    background-color: rgba(192, 161, 89, 255);
+    background-color: white;
     color: rgba(0, 67, 50, 255);
 }
 
@@ -71,7 +71,7 @@ ul {
 }
 
 .signout-button:hover {
-    border: 1px solid rgba(192, 161, 89, 255);
+    border: 1px solid white;
 }
 
 .navigation-sub-links-wrapper {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { RootState } from '../redux/state/store';
-import { deleteData, patchData } from '../utils/apiUtils';
+import { RootState } from '../../redux/state/store';
+import { deleteData, patchData } from '../../utils/apiUtils';
 import './PreviousOrders.css';
 
 interface MenuItem {
@@ -136,7 +136,7 @@ function PreviousOrders() {
         <button
           type="button"
           onClick={updateOrder}
-          className="button-design previous-order-update-button"
+          className="button-design previous-order-update-button view-details-btn"
         >
           Update Order
         </button>

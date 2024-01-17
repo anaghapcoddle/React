@@ -4,7 +4,7 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: rgba(54,54,54,255);
 }
 
 .order-details-container h2 {
@@ -12,8 +12,10 @@
     margin-bottom: 20px;
 }
 
-.order-details-container>div {
+.basic-order-details {
     margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
 }
 
 .order-details-container p {
@@ -31,8 +33,13 @@
     margin-bottom: 10px;
 }
 
-.ordered-items>div {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+.ordered-items-list{
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    font-weight: bold;
+}
+
+.ordered-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
 }

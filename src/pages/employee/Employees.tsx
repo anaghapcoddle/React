@@ -2,10 +2,10 @@ import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Employees.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getData } from '../utils/apiUtils';
-import Layout from '../components/Layout';
-import { setEmployeeDetails } from '../redux/state/employeeDetailsSlice';
-import { RootState } from '../redux/state/store';
+import { getData } from '../../utils/apiUtils';
+import Layout from '../../components/layout/Layout';
+import { setEmployeeDetails } from '../../redux/state/employeeDetailsSlice';
+import { RootState } from '../../redux/state/store';
 
 function Employees() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ function Employees() {
   return (
     <Layout>
       <div className="employee-table-container container">
-        <h2>Employee Details</h2>
+        <h2 className="employee-heading">Employee Details</h2>
         <table className="employee-table">
           <thead>
             <tr>

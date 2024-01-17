@@ -9,19 +9,19 @@ function Footer() {
         <SocialIcon
           className="social-media-icon"
           url="https://facebook.com"
-          bgColor="rgba(192, 161, 89, 255)"
+          bgColor="white"
           fgColor="rgba(0, 67, 50, 255)"
         />
         <SocialIcon
           className="social-media-icon"
           url="https://twitter.com"
-          bgColor="rgba(192, 161, 89, 255)"
+          bgColor="white"
           fgColor="rgba(0, 67, 50, 255)"
         />
         <SocialIcon
           className="social-media-icon"
           url="https://linkedin.com"
-          bgColor="rgba(192, 161, 89, 255)"
+          bgColor="white"
           fgColor="rgba(0, 67, 50, 255)"
         />
       </div>

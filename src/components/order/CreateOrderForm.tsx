@@ -2,8 +2,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import './CreateOrderForm.css';
 import { useSelector } from 'react-redux';
-import { getData, patchData, postData } from '../utils/apiUtils';
-import { RootState } from '../redux/state/store';
+import { getData, patchData, postData } from '../../utils/apiUtils';
+import { RootState } from '../../redux/state/store';
 
 interface MenuItem {
   id: number;
@@ -198,7 +198,7 @@ function CreateOrderForm() {
         <div className="add-item-button-wrapper button-design">
           <button
             type="button"
-            className="add-item-button button-design"
+            className="add-item-button"
             onClick={() => {
               if (option !== undefined) {
                 addToArray(menuItems[option - 1]);
@@ -247,10 +247,14 @@ function CreateOrderForm() {
         ))}
       </div>
       <div className="page-bottom-buttons">
-        <button className="button-design" type="submit">
+        <button className="button-design view-details-btn" type="submit">
           Create Order
         </button>
-        <button className="button-design" type="button" onClick={updateOrder}>
+        <button
+          className="button-design view-details-btn"
+          type="button"
+          onClick={updateOrder}
+        >
           Update Order
         </button>
         <Link
@@ -260,7 +264,7 @@ function CreateOrderForm() {
               : '/table/:tableId'
           }
         >
-          <button className="button-design" type="button">
+          <button className="button-design view-details-btn" type="button">
             Generate Bill
           </button>
         </Link>

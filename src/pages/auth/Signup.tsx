@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../components/form.css';
-import { postData } from '../utils/apiUtils';
+import '../../components/auth/form.css';
+import { postData } from '../../utils/apiUtils';
 
 interface Signupdata {
   username: string;
@@ -89,7 +89,10 @@ function Signup() {
           />
         </div>
         <p className="error-message">{error}</p>
-        <button className="signup-button button-design" type="submit">
+        <button
+          className="signup-button button-design-login-page"
+          type="submit"
+        >
           Sign up
         </button>
       </form>
