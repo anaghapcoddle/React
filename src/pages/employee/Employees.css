@@ -1,0 +1,34 @@
+.employee-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.employee-table th,
+.employee-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.employee-table th {
+    background-color:  rgba(245,245,245,255);
+    color: rgba(54,54,54,255);
+}
+
+.view-details-btn {
+    padding: 6px 12px;
+    background-color: rgba(0, 67, 50, 255);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.employee-heading{
+    color: rgba(54,54,54,255);
+}
+
+.employee-table-container{
+    color: rgba(54,54,54,255);
+}
